@@ -12,7 +12,7 @@ void main(String[] args) {
                 2. get All Car
                 3. get by id
                 4. update Car
-                5. deleete CAr
+                5. delete Car
                 """);
 
         System.out.println("Выбери : ");
@@ -20,14 +20,26 @@ void main(String[] args) {
         switch (a) {
             case 1: {
                 Car car = new Car();
-                System.out.println();
+                System.out.println("Id jaz ");
                 car.setId(scanner.nextLong());
+                scanner.nextLine();
+
+                System.out.println("Model jaz ");
                 car.setModel(scanner.nextLine());
+
+                System.out.println("Name jaz ");
                 car.setName(scanner.nextLine());
+
+                System.out.println("баасын жаз: ");
                 car.setPrice(scanner.nextLong());
+                scanner.nextLine();
+
+                System.out.println("LocalDate жаз ");
                 car.setIssuedDate(LocalDate.parse(scanner.nextLine()));
+
+                System.out.println("Enum Car type жаз:");
                 car.setCarType(CarType.valueOf(scanner.nextLine()));
-carMethod.createCar(car);
+                System.out.println(carMethod.createCar(car));
 
                 break;
             }
@@ -38,30 +50,37 @@ carMethod.createCar(car);
             case 3: {
                 System.out.println("Write id :");
                 long id = scanner.nextLong();
-                carMethod.getCarById(id);
+                System.out.println(carMethod.getCarById(id));
                 break;
             }
             case 4: {
                 System.out.println("Write id: ");
                 long id = scanner.nextLong();
+                scanner.nextLine();
                 Car car = new Car();
+                System.out.println("Model");
                 car.setModel(scanner.nextLine());
+                System.out.println("Name");
                 car.setName(scanner.nextLine());
-                car.setPrice(scanner.nextDouble());
+                System.out.println("Price");
+                car.setPrice(scanner.nextLong());
+                scanner.nextLine();
+                System.out.println("Localdate data");
                 car.setIssuedDate(LocalDate.parse(scanner.nextLine()));
+                System.out.println("Enum type");
                 car.setCarType(CarType.valueOf(scanner.nextLine()));
-                carMethod.updateCar(id, car);
+                System.out.println(carMethod.updateCar(id, car));
                 break;
             }
             case 5: {
                 System.out.println("Inter to delete id");
                 long id = scanner.nextLong();
                 try {
-                    carMethod.deleteCarById(id);
+                    System.out.println(carMethod.deleteCarById(id));
                 } catch (RuntimeException e) {
                     System.out.println(e.getMessage());
-                    break;
-                }
+
+                }break;
             }
             case 6:{
                 istrue=false;
@@ -70,3 +89,11 @@ carMethod.createCar(car);
         }
     }
 }
+
+
+
+
+
+
+
+

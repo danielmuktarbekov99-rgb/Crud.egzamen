@@ -1,5 +1,3 @@
-import java.util.concurrent.Callable;
-
 public class CarMethodImpl implements CarMethod {
 
     Car[] cars = new Car[4];
@@ -26,7 +24,8 @@ public class CarMethodImpl implements CarMethod {
             }
         } catch (RuntimeException e) {
             e.getMessage();
-        } return null;
+        }
+        return null;
     }
 
     @Override
@@ -48,29 +47,17 @@ public class CarMethodImpl implements CarMethod {
 
     @Override
     public String deleteCarById(Long id) {
-        int deleteIndex = -1;
         try {
             for (int i = 0; i < cars.length; i++) {
-                if (cars[i].getId() == id) {
-                    deleteIndex = i;
+                if (cars[i] != null && cars[i].getId() == id) {
+                    cars[i] = null;
                 } else {
-                    throw new RuntimeException();
+                    throw new RuntimeException("Индекс очурулгон жок: ");
                 }
             }
-            Car[] newCar = new Car[cars.length - 1];
-            for (int i = 0; i < deleteIndex; i++) {
-                newCar[i] = cars[i];
-            }
-            for (int i = deleteIndex; i < newCar.length; i++) {
-                newCar[i] = cars[i + 1];
-            }
-            cars = newCar;
-            return "Ийгиликтуу катталды: ";
-        }catch (RuntimeException e){
-            System.out.println(e.getMessage());
+        } catch (RuntimeException e) {
+            e.getMessage();
         }
-        return null;
+        return "Ийгиликтуу очту:";
     }
-}
-
-    
+    }
