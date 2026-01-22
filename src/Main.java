@@ -1,13 +1,72 @@
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-void main() {
-  //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-  // to see how IntelliJ IDEA suggests fixing it.
-  IO.println(String.format("Hello and welcome!"));
+void main(String[] args) {
 
-  for (int i = 1; i <= 5; i++) {
-    //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-    // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-    IO.println("i = " + i);
-  }
+    CarMethod carMethod = new CarMethodImpl();
+    Scanner scanner = new Scanner(System.in);
+    boolean istrue = true;
+    while (istrue) {
+
+        System.out.println("""
+                1. create Car
+                2. get All Car
+                3. get by id
+                4. update Car
+                5. deleete CAr
+                """);
+
+        System.out.println("Выбери : ");
+        int a = scanner.nextInt();
+        switch (a) {
+            case 1: {
+                Car car = new Car();
+                System.out.println();
+                car.setId(scanner.nextLong());
+                car.setModel(scanner.nextLine());
+                car.setName(scanner.nextLine());
+                car.setPrice(scanner.nextLong());
+                car.setIssuedDate(LocalDate.parse(scanner.nextLine()));
+                car.setCarType(CarType.valueOf(scanner.nextLine()));
+carMethod.createCar(car);
+
+                break;
+            }
+            case 2: {
+                System.out.println(Arrays.toString(carMethod.getAllCars()));
+                break;
+            }
+            case 3: {
+                System.out.println("Write id :");
+                long id = scanner.nextLong();
+                carMethod.getCarById(id);
+                break;
+            }
+            case 4: {
+                System.out.println("Write id: ");
+                long id = scanner.nextLong();
+                Car car = new Car();
+                car.setModel(scanner.nextLine());
+                car.setName(scanner.nextLine());
+                car.setPrice(scanner.nextDouble());
+                car.setIssuedDate(LocalDate.parse(scanner.nextLine()));
+                car.setCarType(CarType.valueOf(scanner.nextLine()));
+                carMethod.updateCar(id, car);
+                break;
+            }
+            case 5: {
+                System.out.println("Inter to delete id");
+                long id = scanner.nextLong();
+                try {
+                    carMethod.deleteCarById(id);
+                } catch (RuntimeException e) {
+                    System.out.println(e.getMessage());
+                    break;
+                }
+            }
+            case 6:{
+                istrue=false;
+                break;
+            }
+        }
+    }
 }
